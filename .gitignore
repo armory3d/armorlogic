@@ -1,0 +1,8 @@
+armorlogic.blend1
+build_armorlogic/
+build/
+khafile.js
+korefile.js
+Sources/Main.hx
+*.pyc
+.vscode
