@@ -21,6 +21,7 @@ class UINodes extends iron.Trait {
 	var addNodeButton = false;
 	var popupX = 0.0;
 	var popupY = 0.0;
+	var urlParsed = false;
 
 	public var nodes = new Nodes();
 	public var canvasLogic:TNodeCanvas = null;
@@ -40,7 +41,10 @@ class UINodes extends iron.Trait {
 				#if kha_html5
 				// var s = blob.toString();
 				var url = StringTools.urlDecode(js.Browser.window.location.href);
-				if (url.indexOf("?") > 0) s = url.split("?")[1];
+				if (url.indexOf("?") > 0) {
+					s = url.split("?")[1];
+					urlParsed = true;
+				}
 				#end
 				canvasLogic = haxe.Json.parse(s);
 				NodeCreatorLogic.list = haxe.Json.parse(bnodes.toString());
@@ -91,7 +95,7 @@ class UINodes extends iron.Trait {
 			hideMenu = true;
 		}
 
-		if (keyboard.started("x") || keyboard.started("backspace") || mouse.started("right")) {
+		if (keyboard.started("x") || keyboard.started("backspace")) {
 			if (nodes.nodeSelected != null) {
 				var c = canvasLogic;
 				nodes.removeNode(nodes.nodeSelected, c);
@@ -178,43 +182,45 @@ class UINodes extends iron.Trait {
 			ui._y = 3;
 			ui._w = ew;
 
-			// if (ui.button("Action")) { addNodeButton = true; menuCategory = 0; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 3;
-			// if (ui.button("Animation")) { addNodeButton = true; menuCategory = 1; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 3;
-			// if (ui.button("Array")) { addNodeButton = true; menuCategory = 2; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 3;
-			// if (ui.button("Canvas")) { addNodeButton = true; menuCategory = 3; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 3;
-			// if (ui.button("Event")) { addNodeButton = true; menuCategory = 4; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 3;
-			// if (ui.button("Input")) { addNodeButton = true; menuCategory = 5; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x = 3;
-			// ui._y = 30;
-			// if (ui.button("Logic")) { addNodeButton = true; menuCategory = 6; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x = ew + 3;
-			// ui._y = 30;
-			// // if (ui.button("Native")) { addNodeButton = true; menuCategory = 7; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// // ui._x += ew + 3;
-			// // ui._y = 30;
-			// if (ui.button("Navmesh")) { addNodeButton = true; menuCategory = 8; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 30;
-			// if (ui.button("Physics")) { addNodeButton = true; menuCategory = 9; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 30;
-			// if (ui.button("Sound")) { addNodeButton = true; menuCategory = 10; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 30;
-			// if (ui.button("Value")) { addNodeButton = true; menuCategory = 11; popupX = wx + ui._x; popupY = wy + ui._y; }
-			// ui._x += ew + 3;
-			// ui._y = 30;
-			// if (ui.button("Variable")) { addNodeButton = true; menuCategory = 12; popupX = wx + ui._x; popupY = wy + ui._y; }
+			if (!urlParsed) {
+				if (ui.button("Action")) { addNodeButton = true; menuCategory = 0; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 3;
+				if (ui.button("Animation")) { addNodeButton = true; menuCategory = 1; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 3;
+				if (ui.button("Array")) { addNodeButton = true; menuCategory = 2; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 3;
+				if (ui.button("Canvas")) { addNodeButton = true; menuCategory = 3; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 3;
+				if (ui.button("Event")) { addNodeButton = true; menuCategory = 4; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 3;
+				if (ui.button("Input")) { addNodeButton = true; menuCategory = 5; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x = 3;
+				ui._y = 30;
+				if (ui.button("Logic")) { addNodeButton = true; menuCategory = 6; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x = ew + 3;
+				ui._y = 30;
+				// if (ui.button("Native")) { addNodeButton = true; menuCategory = 7; popupX = wx + ui._x; popupY = wy + ui._y; }
+				// ui._x += ew + 3;
+				// ui._y = 30;
+				if (ui.button("Navmesh")) { addNodeButton = true; menuCategory = 8; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 30;
+				if (ui.button("Physics")) { addNodeButton = true; menuCategory = 9; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 30;
+				if (ui.button("Sound")) { addNodeButton = true; menuCategory = 10; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 30;
+				if (ui.button("Value")) { addNodeButton = true; menuCategory = 11; popupX = wx + ui._x; popupY = wy + ui._y; }
+				ui._x += ew + 3;
+				ui._y = 30;
+				if (ui.button("Variable")) { addNodeButton = true; menuCategory = 12; popupX = wx + ui._x; popupY = wy + ui._y; }
+			}
 		}
 
 		ui.endWindow();
