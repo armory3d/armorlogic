@@ -47,6 +47,7 @@ class UINodes extends iron.Trait {
 					urlParsed = true;
 				}
 				#end
+
 				canvasLogic = haxe.Json.parse(s);
 				NodeCreatorLogic.list = haxe.Json.parse(bnodes.toString());
 
@@ -79,11 +80,11 @@ class UINodes extends iron.Trait {
 		str = StringTools.replace(str, '"id":',                '~1');
 		str = StringTools.replace(str, ',"name":"',            '~2');
 		str = StringTools.replace(str, '","type":"ACTION","color":-3388340',  '~3');
-		str = StringTools.replace(str, '","type":"OBJECT","color":-3388340',  '~4');
+		str = StringTools.replace(str, '","type":"OBJECT","color":-14250817', '~4');
 		str = StringTools.replace(str, '","type":"SHADER","color":-11959648', '~5');
 		str = StringTools.replace(str, '","type":"INTEGER","color":-3388340', '~6');
-		str = StringTools.replace(str, '","type":"VALUE","color":-3388340',   '~7');
-		str = StringTools.replace(str, '","type":"VECTOR","color":-3388340',  '~8');
+		str = StringTools.replace(str, '","type":"VALUE","color":-10238109',  '~7');
+		str = StringTools.replace(str, '","type":"VECTOR","color":-10238109', '~8');
 		str = StringTools.replace(str, '","type":"RGBA","color":-3388340',    '~9');
 		str = StringTools.replace(str, '","type":"STRING","color":-3388340',  '~a');
 		str = StringTools.replace(str, '","type":"BOOL","color":-3388340',    '~b');
@@ -101,22 +102,24 @@ class UINodes extends iron.Trait {
 		str = StringTools.replace(str, ',"from_socket":',      '~n');
 		str = StringTools.replace(str, ',"to_id":',            '~o');
 		str = StringTools.replace(str, ',"to_socket":',        '~p');
-		str = StringTools.replace(str, '[0.0, 0.0, 0.0]',      '~q');
-		str = StringTools.replace(str, '[0.0, 0.0, 0.0, 0.0]', '~r');
+		str = StringTools.replace(str, '[0,0,0]',              '~q');
+		str = StringTools.replace(str, '[0,0,0,0]',            '~r');
 		str = StringTools.replace(str, '},{',                  '~s');
 		str = StringTools.replace(str, ',"color":',            '~t');
 		str = StringTools.replace(str, ',"data":',             '~u');
 		str = StringTools.replace(str, ',"output":',           '~v');
+		str = StringTools.replace(str, '"name":"property',     '~w');
 		return str;
 	}
 
 	function decode(str:String):String {
+		str = StringTools.replace(str, '~w', '"name":"property'    );
 		str = StringTools.replace(str, '~v', ',"output":'          );
 		str = StringTools.replace(str, '~u', ',"data":'            );
 		str = StringTools.replace(str, '~t', ',"color":'           );
 		str = StringTools.replace(str, '~s', '},{'                 );
-		str = StringTools.replace(str, '~r', '[0.0, 0.0, 0.0, 0.0]');
-		str = StringTools.replace(str, '~q', '[0.0, 0.0, 0.0]'     );
+		str = StringTools.replace(str, '~r', '[0,0,0,0]');
+		str = StringTools.replace(str, '~q', '[0,0,0]'     );
 		str = StringTools.replace(str, '~p', ',"to_socket":'       );
 		str = StringTools.replace(str, '~o', ',"to_id":'           );
 		str = StringTools.replace(str, '~n', ',"from_socket":'     );
@@ -134,11 +137,11 @@ class UINodes extends iron.Trait {
 		str = StringTools.replace(str, '~b', '","type":"BOOL","color":-3388340'   );
 		str = StringTools.replace(str, '~a', '","type":"STRING","color":-3388340' );
 		str = StringTools.replace(str, '~9', '","type":"RGBA","color":-3388340'   );
-		str = StringTools.replace(str, '~8', '","type":"VECTOR","color":-3388340' );
-		str = StringTools.replace(str, '~7', '","type":"VALUE","color":-3388340'  );
+		str = StringTools.replace(str, '~8', '","type":"VECTOR","color":-10238109');
+		str = StringTools.replace(str, '~7', '","type":"VALUE","color":-10238109' );
 		str = StringTools.replace(str, '~6', '","type":"INTEGER","color":-3388340');
 		str = StringTools.replace(str, '~5', '","type":"SHADER","color":-11959648');
-		str = StringTools.replace(str, '~4', '","type":"OBJECT","color":-3388340' );
+		str = StringTools.replace(str, '~4', '","type":"OBJECT","color":-14250817');
 		str = StringTools.replace(str, '~3', '","type":"ACTION","color":-3388340' );
 		str = StringTools.replace(str, '~2', ',"name":"'           );
 		str = StringTools.replace(str, '~1', '"id":'               );
