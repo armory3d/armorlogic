@@ -109,7 +109,7 @@ class UINodes extends iron.Trait {
 		str = StringTools.replace(str, ',"data":',             '~u');
 		str = StringTools.replace(str, ',"output":',           '~v');
 		str = StringTools.replace(str, '"name":"property',     '~w');
-		return str;
+		return StringTools.urlEncode(str);
 	}
 
 	function decode(str:String):String {
